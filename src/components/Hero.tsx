@@ -38,10 +38,9 @@ export default function Hero() {
   const lensRef = useRef<HTMLDivElement>(null)
 
   /**
-   * 月食透镜：大标题默认模糊 + 色散，一个带亮月牙弧的圆窗跟随鼠标，
-   * 圆窗内文字恢复清晰。触屏设备与减弱动态偏好下自动禁用。
-   * Eclipse lens: the headline stays blurred with chromatic aberration;
-   * a crescent-ringed lens follows the cursor and reveals sharp text.
+   * 月食透镜：一个带亮月牙弧的小圆环跟随鼠标移动。
+   * 触屏设备与减弱动态偏好下自动禁用。
+   * Eclipse lens: a small crescent-ringed circle follows the cursor.
    */
   useEffect(() => {
     const zone = zoneRef.current
@@ -59,8 +58,6 @@ export default function Hero() {
     let ty = 0
 
     const place = (px: number, py: number) => {
-      zone.style.setProperty('--lens-x', `${px}px`)
-      zone.style.setProperty('--lens-y', `${py}px`)
       lens.style.transform = `translate3d(${px}px, ${py}px, 0) translate(-50%, -50%)`
     }
 
@@ -118,14 +115,7 @@ export default function Hero() {
           data-reveal
           data-reveal-delay="120"
         >
-          <h1 className="hero__title hero__title--blurred">
-            {lines.map((line, i) => (
-              <span key={i} className="hero__title-line">
-                {line}
-              </span>
-            ))}
-          </h1>
-          <h1 className="hero__title hero__title--sharp" aria-hidden="true">
+          <h1 className="hero__title">
             {lines.map((line, i) => (
               <span key={i} className="hero__title-line">
                 {line}
