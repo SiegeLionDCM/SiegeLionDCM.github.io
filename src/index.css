@@ -321,6 +321,79 @@ main {
   display: block;
 }
 
+/* ---------------- 月食透镜（光标跟随） ---------------- */
+.hero__lens-zone {
+  position: relative;
+}
+.hero__title--sharp,
+.lens {
+  display: none;
+}
+
+/* 启用透镜后：底层标题模糊 + 红蓝色散，像失焦的信号 */
+.hero__lens-zone.lens-active .hero__title--blurred {
+  color: rgba(251, 251, 251, 0.85);
+  filter: blur(5px);
+  text-shadow:
+    3px 0 rgba(255, 70, 100, 0.28),
+    -3px 0 rgba(90, 200, 255, 0.28);
+}
+/* 清晰层：仅在透镜圆窗内可见 */
+.hero__lens-zone.lens-active .hero__title--sharp {
+  display: block;
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  clip-path: circle(110px at var(--lens-x, -600px) var(--lens-y, -600px));
+}
+/* 透镜本体：暗色圆盘 + 细环 + 一弯亮月牙 */
+.hero__lens-zone.lens-active .lens {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 220px;
+  height: 220px;
+  z-index: 5;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+.lens__ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: rgba(10, 11, 13, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow:
+    0 0 30px rgba(255, 255, 255, 0.05),
+    inset 0 0 30px rgba(255, 255, 255, 0.03);
+}
+.lens__crescent {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 205deg,
+    transparent 0deg,
+    rgba(255, 255, 255, 0.7) 40deg,
+    #ffffff 85deg,
+    rgba(255, 255, 255, 0.7) 125deg,
+    transparent 160deg
+  );
+  -webkit-mask: radial-gradient(
+    farthest-side,
+    transparent calc(100% - 6px),
+    #000 calc(100% - 4px)
+  );
+  mask: radial-gradient(
+    farthest-side,
+    transparent calc(100% - 6px),
+    #000 calc(100% - 4px)
+  );
+  filter: drop-shadow(0 0 9px rgba(255, 255, 255, 0.6));
+}
+
 .hero__tagline {
   margin: 2rem 0 0;
   max-width: 34rem;
@@ -381,6 +454,19 @@ main {
 .btn--ghost:hover {
   border-color: var(--signal);
   color: var(--signal);
+}
+
+/* 触屏设备上即使脚本运行也不显示透镜，标题保持清晰 */
+@media (pointer: coarse) {
+  .hero__lens-zone.lens-active .hero__title--blurred {
+    color: var(--text);
+    filter: none;
+    text-shadow: none;
+  }
+  .hero__lens-zone.lens-active .hero__title--sharp,
+  .hero__lens-zone.lens-active .lens {
+    display: none;
+  }
 }
 
 /* 滚动提示 */
