@@ -22,8 +22,8 @@ export const profile = {
   githubUser: 'SiegeLionDCM',
   // 页首大标题下方的身份描述
   role: t('开发者 / 持续学习者', 'Developer / Lifelong Learner'),
-  // 一句话签名，显示在大标题里（支持换行用 \n）
-  headline: t('在代码里\n种下生机。', 'Planting life\nin lines of code.'),
+  // 页首大标题（支持换行用 \n）
+  headline: t('Hi，我是小小攻城狮', "Hi, I'm SiegeLion"),
   // 页首副标题
   tagline: t(
     '你好，我是 SiegeLion。这里是我的个人主页，记录我的项目、思考与成长。',
