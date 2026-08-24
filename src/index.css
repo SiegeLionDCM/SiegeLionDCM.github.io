@@ -335,8 +335,8 @@ main {
   position: absolute;
   top: 0;
   left: 0;
-  width: 110px;
-  height: 110px;
+  width: 56px;
+  height: 56px;
   z-index: 5;
   pointer-events: none;
   opacity: 0;
@@ -349,8 +349,8 @@ main {
   background: rgba(10, 11, 13, 0.25);
   border: 1px solid rgba(255, 255, 255, 0.16);
   box-shadow:
-    0 0 18px rgba(255, 255, 255, 0.05),
-    inset 0 0 18px rgba(255, 255, 255, 0.03);
+    0 0 10px rgba(255, 255, 255, 0.05),
+    inset 0 0 10px rgba(255, 255, 255, 0.03);
 }
 .lens__crescent {
   position: absolute;
@@ -366,15 +366,15 @@ main {
   );
   -webkit-mask: radial-gradient(
     farthest-side,
-    transparent calc(100% - 4px),
-    #000 calc(100% - 3px)
+    transparent calc(100% - 2.5px),
+    #000 calc(100% - 1.8px)
   );
   mask: radial-gradient(
     farthest-side,
-    transparent calc(100% - 4px),
-    #000 calc(100% - 3px)
+    transparent calc(100% - 2.5px),
+    #000 calc(100% - 1.8px)
   );
-  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.6));
+  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.6));
 }
 
 .hero__tagline {
